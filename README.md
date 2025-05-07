@@ -57,6 +57,8 @@ https://github.com/user-attachments/assets/54873cb0-a6e7-4cdf-8322-5d9b5ddf3bfe
 
 ```
 lib/
+├── constants/
+│   └── app_constants.dart
 ├── database/
 │   └── database_helper.dart
 ├── models/
