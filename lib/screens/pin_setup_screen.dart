@@ -53,7 +53,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
         SnackBar(
           content: Text(widget.isForgotPin ? AppConstants.pinResetSuccessMessage : AppConstants.pinSetSuccessMessage),
           backgroundColor: Colors.green,
-          duration: Duration(seconds: AppConstants.snackbarDurationShort),
+          duration: const Duration(seconds: AppConstants.snackbarDurationShort),
         ),
       );
 
@@ -66,7 +66,7 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
         SnackBar(
           content: Text('${AppConstants.errorMessage}$e'),
           backgroundColor: Colors.red,
-          duration: Duration(seconds: AppConstants.snackbarDurationLong),
+          duration: const Duration(seconds: AppConstants.snackbarDurationLong),
         ),
       );
     } finally {
@@ -99,14 +99,14 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
             absorbing: _isLoading,
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(AppConstants.contentPadding),
+                padding: const EdgeInsets.all(AppConstants.contentPadding),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (widget.isForgotPin) ...[
-                        Text(
+                        const Text(
                           AppConstants.warningLabel,
                           style: TextStyle(
                             color: Colors.red,
@@ -115,13 +115,13 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: AppConstants.spacingLarge),
+                        const SizedBox(height: AppConstants.spacingLarge),
                       ],
                       TextFormField(
                         controller: _pinController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: AppConstants.enterPinLabel,
-                          border: const OutlineInputBorder(),
+                          border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.number,
                         maxLength: AppConstants.pinLength,
@@ -141,12 +141,12 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                           return null;
                         },
                       ),
-                      SizedBox(height: AppConstants.spacingMedium),
+                      const SizedBox(height: AppConstants.spacingMedium),
                       TextFormField(
                         controller: _confirmPinController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: AppConstants.confirmPinLabel,
-                          border: const OutlineInputBorder(),
+                          border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.number,
                         maxLength: AppConstants.pinLength,
@@ -161,15 +161,15 @@ class _PinSetupScreenState extends State<PinSetupScreen> {
                           return null;
                         },
                       ),
-                      SizedBox(height: AppConstants.spacingLarge),
+                      const SizedBox(height: AppConstants.spacingLarge),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: _isLoading ? null : _handleSubmit,
                           child: Padding(
-                            padding: EdgeInsets.all(AppConstants.buttonPadding),
+                            padding: const EdgeInsets.all(AppConstants.buttonPadding),
                             child: _isLoading
-                                ? SizedBox(
+                                ? const SizedBox(
                                     height: AppConstants.loadingIndicatorSize,
                                     width: AppConstants.loadingIndicatorSize,
                                     child: CircularProgressIndicator(

@@ -37,7 +37,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
           Navigator.of(context).pop(true);
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(AppConstants.invalidPinMessage),
               backgroundColor: Colors.red,
             ),
@@ -64,17 +64,17 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppConstants.forgotPinAction),
-        content: Text(AppConstants.forgotPinWarningMessage),
+        title: const Text(AppConstants.forgotPinAction),
+        content: const Text(AppConstants.forgotPinWarningMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(AppConstants.cancelAction),
+            child: const Text(AppConstants.cancelAction),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: Text(AppConstants.resetAction),
+            child: const Text(AppConstants.resetAction),
           ),
         ],
       ),
@@ -105,13 +105,13 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(AppConstants.enterPinLabel),
+          title: const Text(AppConstants.enterPinLabel),
           leading: _isLoading ? null : AppBar().leading,
         ),
         body: AbsorbPointer(
           absorbing: _isLoading,
           child: Padding(
-            padding: EdgeInsets.all(AppConstants.contentPadding),
+            padding: const EdgeInsets.all(AppConstants.contentPadding),
             child: Form(
               key: _formKey,
               child: Column(
@@ -119,9 +119,9 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 children: [
                   TextFormField(
                     controller: _pinController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: AppConstants.enterPinLabel,
-                      border: const OutlineInputBorder(),
+                      border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
                     maxLength: AppConstants.pinLength,
@@ -140,29 +140,29 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: AppConstants.spacingLarge),
+                  const SizedBox(height: AppConstants.spacingLarge),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: _isLoading ? null : _verifyPin,
                       child: Padding(
-                        padding: EdgeInsets.all(AppConstants.buttonPadding),
+                        padding: const EdgeInsets.all(AppConstants.buttonPadding),
                         child: _isLoading
-                            ? SizedBox(
+                            ? const SizedBox(
                                 height: AppConstants.loadingIndicatorSize,
                                 width: AppConstants.loadingIndicatorSize,
                                 child: CircularProgressIndicator(
                                   strokeWidth: AppConstants.loadingIndicatorStrokeWidth,
                                 ),
                               )
-                            : Text(AppConstants.verifyPinAction),
+                            : const Text(AppConstants.verifyPinAction),
                       ),
                     ),
                   ),
-                  SizedBox(height: AppConstants.spacingMedium),
+                  const SizedBox(height: AppConstants.spacingMedium),
                   TextButton(
                     onPressed: _isLoading ? null : _handleForgotPin,
-                    child: Text(AppConstants.forgotPinAction),
+                    child: const Text(AppConstants.forgotPinAction),
                   ),
                 ],
               ),

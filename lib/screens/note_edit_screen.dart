@@ -69,14 +69,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(AppConstants.contentPadding),
+                padding: const EdgeInsets.all(AppConstants.contentPadding),
                 child: Column(
                   children: [
                     TextFormField(
                       controller: _titleController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: AppConstants.titleLabel,
-                        border: const OutlineInputBorder(),
+                        border: OutlineInputBorder(),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -85,13 +85,13 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: AppConstants.spacingMedium),
+                    const SizedBox(height: AppConstants.spacingMedium),
                     Expanded(
                       child: TextFormField(
                         controller: _contentController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: AppConstants.contentLabel,
-                          border: const OutlineInputBorder(),
+                          border: OutlineInputBorder(),
                           alignLabelWithHint: true,
                         ),
                         maxLines: null,
@@ -110,7 +110,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.all(AppConstants.contentPadding),
+              padding: const EdgeInsets.all(AppConstants.contentPadding),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surface,
                 boxShadow: [
@@ -128,7 +128,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                   icon: const Icon(Icons.save),
                   label: Text(widget.note == null ? AppConstants.addNoteLabel : AppConstants.saveChangesLabel),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: AppConstants.buttonPadding),
+                    padding: const EdgeInsets.symmetric(vertical: AppConstants.buttonPadding),
                   ),
                 ),
               ),

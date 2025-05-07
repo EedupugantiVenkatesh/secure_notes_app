@@ -69,17 +69,17 @@ class _PinScreenState extends State<PinScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppConstants.resetPinLabel),
-        content: Text(AppConstants.forgotPinWarningMessage),
+        title: const Text(AppConstants.resetPinLabel),
+        content: const Text(AppConstants.forgotPinWarningMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(AppConstants.cancelAction),
+            child: const Text(AppConstants.cancelAction),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: Text(AppConstants.resetAction),
+            child: const Text(AppConstants.resetAction),
           ),
         ],
       ),
@@ -93,7 +93,7 @@ class _PinScreenState extends State<PinScreen> {
         if (mounted) {
           // Show success message
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(AppConstants.pinResetSuccessMessage),
               backgroundColor: Colors.green,
               duration: Duration(seconds: AppConstants.snackbarDurationShort),
@@ -117,7 +117,7 @@ class _PinScreenState extends State<PinScreen> {
             SnackBar(
               content: Text('${AppConstants.errorMessage}$e'),
               backgroundColor: Colors.red,
-              duration: Duration(seconds: AppConstants.snackbarDurationLong),
+              duration: const Duration(seconds: AppConstants.snackbarDurationLong),
             ),
           );
         }
@@ -134,12 +134,12 @@ class _PinScreenState extends State<PinScreen> {
           if (!widget.isSetup)
             TextButton(
               onPressed: _handleResetPin,
-              child: Text(AppConstants.forgotPinAction),
+              child: const Text(AppConstants.forgotPinAction),
             ),
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(AppConstants.contentPadding),
+        padding: const EdgeInsets.all(AppConstants.contentPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -150,20 +150,20 @@ class _PinScreenState extends State<PinScreen> {
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: AppConstants.spacingLarge),
+            const SizedBox(height: AppConstants.spacingLarge),
             TextField(
               controller: _pinController,
               keyboardType: TextInputType.number,
               maxLength: AppConstants.pinLength,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: AppConstants.pinLabel,
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(),
               ),
             ),
             if (_errorMessage.isNotEmpty)
               Padding(
-                padding: EdgeInsets.only(top: AppConstants.spacingSmall),
+                padding: const EdgeInsets.only(top: AppConstants.spacingSmall),
                 child: Text(
                   _errorMessage,
                   style: TextStyle(
@@ -171,15 +171,15 @@ class _PinScreenState extends State<PinScreen> {
                   ),
                 ),
               ),
-            SizedBox(height: AppConstants.spacingMedium),
+            const SizedBox(height: AppConstants.spacingMedium),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _isLoading ? null : _handlePinSubmit,
                 child: Padding(
-                  padding: EdgeInsets.all(AppConstants.buttonPadding),
+                  padding: const EdgeInsets.all(AppConstants.buttonPadding),
                   child: _isLoading
-                      ? SizedBox(
+                      ? const SizedBox(
                           height: AppConstants.loadingIndicatorSize,
                           width: AppConstants.loadingIndicatorSize,
                           child: CircularProgressIndicator(

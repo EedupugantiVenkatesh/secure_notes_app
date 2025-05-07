@@ -29,7 +29,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppConstants.myNotesLabel),
+        title: const Text(AppConstants.myNotesLabel),
         actions: [
           IconButton(
             icon: Icon(
@@ -48,7 +48,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
           final notes = notesProvider.notes;
           
           if (notes.isEmpty) {
-            return Center(
+            return const Center(
               child: Text(AppConstants.emptyNotesMessage),
             );
           }
@@ -69,7 +69,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                         foregroundColor: Colors.white,
                         icon: Icons.edit,
                         label: AppConstants.editAction,
-                        padding: EdgeInsets.symmetric(horizontal: AppConstants.contentPadding),
+                        padding: const EdgeInsets.symmetric(horizontal: AppConstants.contentPadding),
                       ),
                       SlidableAction(
                         onPressed: (context) => _deleteNote(context, note),
@@ -77,12 +77,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
                         label: AppConstants.deleteAction,
-                        padding: EdgeInsets.symmetric(horizontal: AppConstants.contentPadding),
+                        padding: const EdgeInsets.symmetric(horizontal: AppConstants.contentPadding),
                       ),
                     ],
                   ),
                   child: Card(
-                    margin: EdgeInsets.symmetric(
+                    margin: const EdgeInsets.symmetric(
                       horizontal: AppConstants.cardHorizontalMargin,
                       vertical: AppConstants.cardVerticalMargin,
                     ),
@@ -91,12 +91,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       borderRadius: BorderRadius.circular(AppConstants.cardBorderRadius),
                     ),
                     child: ListTile(
-                      contentPadding: EdgeInsets.all(AppConstants.contentPadding),
+                      contentPadding: const EdgeInsets.all(AppConstants.contentPadding),
                       title: Text(
                         note.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: AppConstants.titleFontSize,
                         ),
@@ -104,16 +104,16 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: AppConstants.spacingSmall),
+                          const SizedBox(height: AppConstants.spacingSmall),
                           Text(
                             note.content,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: AppConstants.contentFontSize,
                             ),
                           ),
-                          SizedBox(height: AppConstants.spacingSmall),
+                          const SizedBox(height: AppConstants.spacingSmall),
                           Text(
                             '${AppConstants.lastUpdatedLabel} ${note.formattedUpdatedAt}',
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -162,16 +162,16 @@ class _NotesListScreenState extends State<NotesListScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppConstants.deleteNoteLabel),
-        content: Text(AppConstants.deleteNoteConfirmationMessage),
+        title: const Text(AppConstants.deleteNoteLabel),
+        content: const Text(AppConstants.deleteNoteConfirmationMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(AppConstants.cancelAction),
+            child: const Text(AppConstants.cancelAction),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text(AppConstants.deleteAction),
+            child: const Text(AppConstants.deleteAction),
           ),
         ],
       ),
@@ -182,7 +182,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
         await notesProvider.deleteNote(note.id!);
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(AppConstants.noteDeletedMessage),
               duration: Duration(seconds: AppConstants.snackbarDurationShort),
             ),
@@ -194,7 +194,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
             SnackBar(
               content: Text('${AppConstants.errorMessage}$e'),
               backgroundColor: Colors.red,
-              duration: Duration(seconds: AppConstants.snackbarDurationLong),
+              duration: const Duration(seconds: AppConstants.snackbarDurationLong),
             ),
           );
         }
