@@ -28,7 +28,7 @@ https://github.com/user-attachments/assets/54873cb0-a6e7-4cdf-8322-5d9b5ddf3bfe
 2. **Installation**
    ```bash
    # Clone the repository
-   git clone [your-repository-url]
+   git clone https://github.com/EedupugantiVenkatesh/secure_notes_app.git
    
    # Navigate to project directory
    cd secure_notes_app
