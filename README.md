@@ -4,7 +4,7 @@ A Flutter application for managing personal text notes with PIN protection. This
 
 # APK Download
 
-[📱 Download APK](https://github.com/EedupugantiVenkatesh/secure_notes_app/releases/download/secureNotes/app-release.apk)
+[📱 Download APK](https://github.com/EedupugantiVenkatesh/secure_notes_app/releases/download/secureNotes/Secure_Notes.apk)
 
 ## Features
 
