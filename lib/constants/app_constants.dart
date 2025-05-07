@@ -18,6 +18,9 @@ class AppConstants {
   static const String pinKey = 'user_pin';
   static const int pinLength = 4;
   
+  // Theme
+  static const String themeKey = 'is_dark_mode';
+  
   // Messages
   static const String emptyNotesMessage = 'No notes yet. Tap + to create one!';
   static const String pinRequiredMessage = 'Please enter a PIN';

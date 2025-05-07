@@ -13,13 +13,14 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> checkFirstLaunch() async {
     final hasPin = await _storage.read(key: AppConstants.pinKey) != null;
-    _isFirstLaunch = hasPin;
+    _isFirstLaunch = !hasPin;
     notifyListeners();
   }
 
   Future<void> setPin(String pin) async {
     await _storage.write(key: AppConstants.pinKey, value: pin);
     _isFirstLaunch = false;
+    _isAuthenticated = true;
     notifyListeners();
   }
 
@@ -32,7 +33,13 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> resetPin() async {
+    // Delete all notes from the database
+    await DatabaseHelper().deleteAllNotes();
+    
+    // Delete the PIN
     await _storage.delete(key: AppConstants.pinKey);
+    
+    // Reset state
     _isFirstLaunch = true;
     _isAuthenticated = false;
     notifyListeners();

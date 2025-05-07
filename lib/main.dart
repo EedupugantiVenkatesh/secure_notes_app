@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: AppConstants.appName,
             theme: ThemeData.light(),
+            debugShowCheckedModeBanner: false,
             darkTheme: ThemeData.dark(),
             themeMode: notesProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
             home: const AuthWrapper(),

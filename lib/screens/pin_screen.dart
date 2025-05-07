@@ -86,17 +86,41 @@ class _PinScreenState extends State<PinScreen> {
     );
 
     if (confirmed == true) {
-      await context.read<AuthProvider>().resetPin();
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PinScreen(
-              isSetup: true,
-              onPinVerified: widget.onPinVerified,
+      try {
+        // Reset PIN and clear notes
+        await context.read<AuthProvider>().resetPin();
+        
+        if (mounted) {
+          // Show success message
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(AppConstants.pinResetSuccessMessage),
+              backgroundColor: Colors.green,
+              duration: Duration(seconds: AppConstants.snackbarDurationShort),
             ),
-          ),
-        );
+          );
+
+          // Navigate to PIN setup screen
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PinScreen(
+                isSetup: true,
+                onPinVerified: widget.onPinVerified,
+              ),
+            ),
+          );
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('${AppConstants.errorMessage}$e'),
+              backgroundColor: Colors.red,
+              duration: Duration(seconds: AppConstants.snackbarDurationLong),
+            ),
+          );
+        }
       }
     }
   }

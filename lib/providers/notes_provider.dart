@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../models/note.dart';
 import '../database/database_helper.dart';
 import '../constants/app_constants.dart';
 
 class NotesProvider with ChangeNotifier {
-  final DatabaseHelper _dbHelper = DatabaseHelper();
+  final _dbHelper = DatabaseHelper();
+  final _storage = const FlutterSecureStorage();
   List<Note> _notes = [];
   bool _isDarkMode = false;
   bool _isLoading = false;
@@ -12,6 +14,22 @@ class NotesProvider with ChangeNotifier {
   List<Note> get notes => _notes;
   bool get isDarkMode => _isDarkMode;
   bool get isLoading => _isLoading;
+
+  NotesProvider() {
+    _loadThemePreference();
+  }
+
+  Future<void> _loadThemePreference() async {
+    final themeValue = await _storage.read(key: AppConstants.themeKey);
+    _isDarkMode = themeValue == 'true';
+    notifyListeners();
+  }
+
+  Future<void> toggleDarkMode() async {
+    _isDarkMode = !_isDarkMode;
+    await _storage.write(key: AppConstants.themeKey, value: _isDarkMode.toString());
+    notifyListeners();
+  }
 
   Future<void> loadNotes() async {
     try {
@@ -29,8 +47,10 @@ class NotesProvider with ChangeNotifier {
 
   Future<void> addNote(Note note) async {
     try {
-      await _dbHelper.insertNote(note);
-      await loadNotes();
+      final id = await _dbHelper.insertNote(note);
+      note = note.copyWith(id: id);
+      _notes.add(note);
+      notifyListeners();
     } catch (e) {
       debugPrint('${AppConstants.errorAddingNote}$e');
     }
@@ -39,7 +59,11 @@ class NotesProvider with ChangeNotifier {
   Future<void> updateNote(Note note) async {
     try {
       await _dbHelper.updateNote(note);
-      await loadNotes();
+      final index = _notes.indexWhere((n) => n.id == note.id);
+      if (index != -1) {
+        _notes[index] = note;
+        notifyListeners();
+      }
     } catch (e) {
       debugPrint('${AppConstants.errorUpdatingNote}$e');
     }
@@ -48,7 +72,8 @@ class NotesProvider with ChangeNotifier {
   Future<void> deleteNote(int id) async {
     try {
       await _dbHelper.deleteNote(id);
-      await loadNotes();
+      _notes.removeWhere((note) => note.id == id);
+      notifyListeners();
     } catch (e) {
       debugPrint('${AppConstants.errorDeletingNote}$e');
     }
@@ -57,14 +82,10 @@ class NotesProvider with ChangeNotifier {
   Future<void> deleteAllNotes() async {
     try {
       await _dbHelper.deleteAllNotes();
-      await loadNotes();
+      _notes.clear();
+      notifyListeners();
     } catch (e) {
       debugPrint('${AppConstants.errorDeletingAllNotes}$e');
     }
-  }
-
-  void toggleDarkMode() {
-    _isDarkMode = !_isDarkMode;
-    notifyListeners();
   }
 } 
