@@ -13,13 +13,14 @@ A Flutter application for managing personal text notes with PIN protection. This
 - 🔒 Secure data storage
 - 🔑 PIN reset functionality (with data wipe)
 
-## Screenshots
+## Screenshots/Videos
 
-[Add screenshots of your app here]
+https://github.com/user-attachments/assets/54873cb0-a6e7-4cdf-8322-5d9b5ddf3bfe
 
 ## Setup Instructions
 
 1. **Prerequisites**
+
    - Flutter SDK (latest stable version)
    - Android Studio / VS Code
    - Git
