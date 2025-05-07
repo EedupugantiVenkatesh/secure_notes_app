@@ -2,6 +2,10 @@
 
 A Flutter application for managing personal text notes with PIN protection. This app provides a secure way to store and manage your notes with a 4-digit PIN authentication system.
 
+# APK Download
+
+[📱 Download APK](https://github.com/EedupugantiVenkatesh/secure_notes_app/releases/download/v1.0.0/app-release.apk)
+
 ## Features
 
 - 🔐 4-digit PIN protection
